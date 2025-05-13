@@ -1,38 +1,61 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const tiers = ["S", "A", "B", "C", "D"];
+import { Link } from 'react-router-dom'; // Import Link
 
 const MetaPage: React.FC = () => {
+  // Placeholder data structure for tiers and comps
+  const metaTiers = [
+    {
+      tier: 'S',
+      color: 'border-yellow-500 text-yellow-500', // Example color for S tier
+      comps: [
+        { name: 'Comp A', description: 'Strongest comp right now.' },
+        { name: 'Comp B', description: 'Another top-tier comp.' },
+      ],
+    },
+    {
+      tier: 'A',
+      color: 'border-purple-500 text-purple-500', // Example color for A tier
+      comps: [
+        { name: 'Comp C', description: 'Very strong, slightly less dominant.' },
+        { name: 'Comp D', description: 'Solid choice for climbing.' },
+        { name: 'Comp E', description: 'Good alternative.' },
+      ],
+    },
+    {
+      tier: 'B',
+      color: 'border-blue-500 text-blue-500', // Example color for B tier
+      comps: [
+        { name: 'Comp F', description: 'Viable, but requires specific conditions.' },
+      ],
+    },
+    // Add more tiers as needed
+  ];
+
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
 
-      {tiers.map((tier) => (
-        <div key={tier} className="mb-10">
-          {/* Refined tier header styling */}
-          <h2 className={`text-3xl font-semibold mb-6 border-l-4 pl-4 ${
-            tier === 'S' ? 'border-yellow-500 text-yellow-500' :
-            tier === 'A' ? 'border-purple-500 text-purple-500' :
-            tier === 'B' ? 'border-blue-500 text-blue-500' :
-            tier === 'C' ? 'border-green-500 text-green-500' :
-            'border-gray-500 text-gray-500'
-          }`}>
-            Tier {tier}
+      {metaTiers.map((tierData) => (
+        <div key={tierData.tier} className="mb-10">
+          <h2 className={`text-3xl font-semibold mb-6 border-l-4 pl-4 ${tierData.color}`}>
+            Tier {tierData.tier}
           </h2>
-          {/* Responsive grid for comp cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Placeholder Cards for Team Comps with enhanced styling and hover effects */}
-            {[1, 2, 3].map((comp) => (
-              <Card key={comp} className="hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-                <CardHeader>
-                  <CardTitle>Team Comp {comp}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-500">Brief description or key units...</p>
-                  {/* Add placeholder for champion icons here later */}
-                </CardContent>
-              </Card>
+            {tierData.comps.map((comp, index) => ( // Use metaTiers data
+              <Link to={`/meta/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}> {/* Wrap Card with Link */}
+                <Card className="hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                  <CardHeader>
+                    <CardTitle>{comp.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-500">{comp.description}</p>
+                    {/* Add placeholder for champion icons here later */}
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
