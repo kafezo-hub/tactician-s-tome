@@ -29,13 +29,11 @@ const MetaPage = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {comps.map((comp) => (
-              // Added min-w-0 and min-h-0 to the Link (grid item)
               <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
-                {/* Ensured Card is w-full and maintains aspect ratio */}
                 <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col">
                   <CardHeader className="pb-2">
-                    {/* Ensured title handles overflow */}
-                    <CardTitle className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">{comp.name}</CardTitle>
+                    {/* Removed overflow-hidden, text-ellipsis, and whitespace-nowrap */}
+                    <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-between">
                     {/* Placeholder Image */}
