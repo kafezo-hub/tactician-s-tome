@@ -82,7 +82,7 @@ const MetaPage = () => {
       <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
 
       {Object.entries(metaTiers).map(([tier, comps]) => {
-        // Determine color class based on tier, using theme colors where appropriate
+        // Determine color class based on tier
         const tierColorClass =
           tier === 'S' ? 'yellow-500' : // Keeping standard yellow for S
           tier === 'A' ? 'purple-500' : // Keeping standard purple for A
@@ -101,12 +101,12 @@ const MetaPage = () => {
               {/* Main Content Box (the existing gradient box) */}
               <div className="flex-grow bg-gradient-to-r from-primary to-accent p-1 rounded-md">
                 <div className="bg-card p-3 rounded-md">
-                  {/* Removed the old h2 and its container div */}
                   {/* The grid of comp cards remains */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {comps.map((comp) => (
                       <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
-                        <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative">
+                        {/* Added dynamic background color class to the Card */}
+                        <Card className={`hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative bg-${tierColorClass}`}>
                           <CardHeader className="pb-2">
                             <CardTitle className="text-lg">{comp.name}</CardTitle>
                           </CardHeader>
@@ -120,6 +120,7 @@ const MetaPage = () => {
                               />
                             </div>
                             <div className="absolute top-2 right-2">
+                               {/* You might want to adjust the Badge color or text color for better contrast */}
                                <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
                             </div>
                           </CardContent>
