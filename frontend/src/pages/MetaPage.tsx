@@ -111,6 +111,10 @@ const MetaPage = () => {
                             {/* CardTitle remains removed */}
                           </CardHeader>
                           <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
+                             {/* Comp name in a colored box, positioned absolutely - Adjusted top position */}
+                            <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-${tierColorClass} text-primary-foreground px-2 py-1 rounded-md text-sm font-semibold whitespace-nowrap`}>
+                               {comp.name}
+                            </div>
                             {/* Placeholder Image - Positioned Absolutely */}
                             <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
                               <img
@@ -119,7 +123,7 @@ const MetaPage = () => {
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            {/* Removed the comp name text div from here */}
+                            {/* Removed the comp name text div from the bottom */}
                             {/*
                             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center text-sm font-semibold text-foreground">
                                {comp.name}
@@ -131,10 +135,12 @@ const MetaPage = () => {
                             </div>
                           </CardContent>
                         </Card>
-                        {/* Added the comp name text div outside the Card */}
-                        <div className="text-center text-sm font-semibold text-foreground mt-2"> {/* Added mt-2 for spacing */}
+                        {/* Removed the comp name text div outside the Card */}
+                        {/*
+                        <div className="text-center text-sm font-semibold text-foreground mt-2">
                            {comp.name}
                         </div>
+                        */}
                       </Link>
                     ))}
                   </div>
