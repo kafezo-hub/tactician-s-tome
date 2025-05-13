@@ -115,10 +115,10 @@ const MetaPage = () => {
                         <CardHeader className="pb-2">
                           {/* CardTitle remains removed */}
                         </CardHeader>
-                        {/* Adjusted CardContent styling */}
-                        <CardContent className="flex flex-col items-center justify-center p-4 pt-0 flex-grow gap-4"> {/* Changed justify-start to justify-center and added gap-4 */}
-                           {/* Comp Name Box - Removed mb-4 */}
-                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-full`}> {/* Removed mb-4 */}
+                        {/* Adjusted CardContent styling - Changed justify-center to justify-start */}
+                        <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow gap-4"> {/* Changed justify-center to justify-start */}
+                           {/* Comp Name Box */}
+                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-full`}>
                             {comp.name}
                           </div>
                           {/* Image Placeholder */}
