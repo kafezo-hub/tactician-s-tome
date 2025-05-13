@@ -4,16 +4,17 @@ import { Badge } from '@/components/ui/badge';
 
 const placeholderComps = {
   S: [
-    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrls: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'] },
-    { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrls: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'] },
+    // Reverted imageUrls to a single imageUrl string
+    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
   ],
   A: [
-    { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrls: ['/placeholder.svg', '/placeholder.svg'] },
-    { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrls: ['/placeholder.svg', '/placeholder.svg'] },
+    { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
   ],
   B: [
-    { name: 'Set 14 Fated Duelists', tier: 'B', imageUrls: ['/placeholder.svg'] },
-    { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrls: ['/placeholder.svg'] },
+    { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
   ],
 };
 
@@ -35,19 +36,14 @@ const MetaPage = () => {
                     <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-between">
-                    {/* Placeholder Images in a row */}
-                    {/* Added flex container for images */}
-                    <div className="flex items-center justify-center space-x-2 mb-4">
-                      {comp.imageUrls.map((imageUrl, index) => (
-                        // Styled individual image placeholder
-                        <div key={index} className="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border-2 border-gray-400">
-                           <img
-                            src={imageUrl}
-                            alt={`${comp.name} image ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      ))}
+                    {/* Restored single Placeholder Image */}
+                    <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden">
+                      <img
+                        // Use the single imageUrl
+                        src={comp.imageUrl}
+                        alt={`${comp.name} image`}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="absolute top-2 right-2">
                        <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
