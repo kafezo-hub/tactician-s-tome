@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator'; // Import Separator
+import { Separator } from '@/components/ui/separator';
 
 // Placeholder data structure for a comp
 const placeholderComp = {
@@ -11,14 +11,15 @@ const placeholderComp = {
   tier: 'S',
   description: 'A strong composition focusing on key units and synergies.',
   champions: [
-    { name: 'Champion 1', items: 3 },
-    { name: 'Champion 2', items: 2 },
-    { name: 'Champion 3', items: 1 },
-    { name: 'Champion 4', items: 0 },
-    { name: 'Champion 5', items: 0 },
-    { name: 'Champion 6', items: 0 },
-    { name: 'Champion 7', items: 0 },
-    { name: 'Champion 8', items: 0 },
+    // Removed 'items' property as it's no longer used for rendering placeholders
+    { name: 'Champion 1' },
+    { name: 'Champion 2' },
+    { name: 'Champion 3' },
+    { name: 'Champion 4' },
+    { name: 'Champion 5' },
+    { name: 'Champion 6' },
+    { name: 'Champion 7' },
+    { name: 'Champion 8' },
   ],
   traits: [
     { name: 'Trait 1', level: 3 },
@@ -52,9 +53,9 @@ const CompPage = () => {
         </Badge>
       </div>
 
-      <p className="text-lg text-gray-700 mb-8 text-center">{comp.description}</p> {/* Added description */}
+      <p className="text-lg text-gray-700 mb-8 text-center">{comp.description}</p>
 
-      <Separator className="my-8" /> {/* Added Separator */}
+      <Separator className="my-8" />
 
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -72,11 +73,14 @@ const CompPage = () => {
                         <AvatarImage src={`/placeholder.svg`} alt={champ.name} />
                         <AvatarFallback>{champ.name.substring(0, 2)}</AvatarFallback>
                       </Avatar>
+                      {/* Removed item placeholder div */}
+                      {/*
                       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-1">
                         {[...Array(champ.items)].map((_, itemIndex) => (
                           <div key={itemIndex} className="w-3 h-3 bg-blue-500 rounded-full border border-blue-700 shadow-sm"></div>
                         ))}
                       </div>
+                      */}
                     </div>
                     <span className="mt-2 text-sm text-center">{champ.name}</span>
                   </div>
