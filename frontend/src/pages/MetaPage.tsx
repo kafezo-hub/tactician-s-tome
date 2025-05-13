@@ -1,28 +1,83 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useQuery } from '@tanstack/react-query'; // Import useQuery
+import { Skeleton } from '@/components/ui/skeleton'; // Import Skeleton for loading state
 
-const placeholderComps = {
-  S: [
-    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
-  ],
-  A: [
-    { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
-  ],
-  B: [
-    { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
-  ],
+// Define a type for the expected data structure (adjust based on actual API response)
+interface Comp {
+  name: string;
+  tier: string;
+  imageUrl: string; // Assuming a single image URL for now
+  // Add other fields like champions, traits, etc. if the API provides them
+}
+
+// Placeholder fetch function - REPLACE with actual API call
+const fetchMetaComps = async (): Promise<{[key: string]: Comp[]}> => {
+  // In a real scenario, you would fetch data from an API here.
+  // Example: const response = await fetch('YOUR_TFT_META_API_ENDPOINT');
+  // const data = await response.json();
+  // return data;
+
+  // Using placeholder data for now
+  await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+  return {
+    S: [
+      { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
+    ],
+    A: [
+      { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
+    ],
+    B: [
+      { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
+    ],
+  };
 };
 
 const MetaPage = () => {
+  // Use useQuery to fetch data
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['tftMetaComps'], // Unique key for this query
+    queryFn: fetchMetaComps, // The function that fetches the data
+  });
+
+  if (isLoading) {
+    // Display a loading state using Skeleton components
+    return (
+      <div className="container mx-auto py-8">
+        <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {[...Array(8)].map((_, index) => ( // Show 8 skeleton cards
+            <Skeleton key={index} className="w-full h-64 rounded-md" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    // Display an error message
+    return (
+      <div className="container mx-auto py-8 text-center text-red-500">
+        <h1 className="text-4xl font-bold mb-8">Error Loading Meta</h1>
+        <p>Could not load meta compositions. Please try again later.</p>
+        {/* Optional: Display error details for debugging */}
+        {/* <p className="text-sm text-gray-600">{error.message}</p> */}
+      </div>
+    );
+  }
+
+  // Assuming data is structured like placeholderComps: { S: [...], A: [...], ... }
+  const metaTiers = data || {}; // Use fetched data or empty object if data is null/undefined
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
 
-      {Object.entries(placeholderComps).map(([tier, comps]) => (
+      {Object.entries(metaTiers).map(([tier, comps]) => (
         <div key={tier} className="mb-12">
           <div className={`border-l-8 pl-4 mb-6 ${tier === 'S' ? 'border-yellow-500' : tier === 'A' ? 'border-green-500' : tier === 'B' ? 'border-blue-500' : 'border-gray-500'}`}>
             <h2 className="text-3xl font-semibold">{`Tier ${tier}`}</h2>
@@ -35,11 +90,10 @@ const MetaPage = () => {
                     <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
-                    {/* Improved Placeholder Image Styling */}
-                    {/* Added bg-muted, rounded-md, and shadow-sm */}
+                    {/* Placeholder Image - Positioned Absolutely */}
                     <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
                       <img
-                        src={comp.imageUrl}
+                        src={comp.imageUrl} // Use imageUrl from fetched data
                         alt={`${comp.name} image`}
                         className="w-full h-full object-cover"
                       />
