@@ -125,15 +125,16 @@ const MetaPage: React.FC = () => {
                       className="min-w-0 min-h-0"
                     >
                       <Card className={`relative w-full aspect-square flex flex-col ${tierColorClass}`}>
-                        {/* Tier Badge - Reverted to show only the tier letter */}
-                        <Badge className="absolute top-2 right-2">{comp.tier}</Badge> {/* Removed "Tier " */}
-                        <CardContent className="flex flex-col items-center justify-start p-4 pt-0 gap-4 flex-grow relative">
-                           {/* Comp Name Box */}
-                           <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 ${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-sm font-semibold text-center max-w-full`}>
-                              {comp.name}
-                           </div>
-                          {/* Image Placeholder */}
-                          <div className="w-full max-w-[calc(100%-2rem)] aspect-video bg-muted rounded-md shadow-sm overflow-hidden mt-12">
+                        {/* Tier Badge (Absolute Positioned) */}
+                        <Badge className="absolute top-2 right-2">{comp.tier}</Badge>
+                        {/* CardContent is relative for absolute positioning of children */}
+                        <CardContent className="relative flex-grow p-4 pt-0">
+                           {/* Comp name in a colored box - positioned absolutely */}
+                            <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-[calc(100%-1.5rem)]`}>
+                               {comp.name}
+                            </div>
+                          {/* Image Placeholder - positioned absolutely */}
+                          <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] aspect-video bg-muted rounded-md shadow-sm overflow-hidden">
                             <img
                               src={comp.imageUrl}
                               alt={`${comp.name} image`}
