@@ -55,17 +55,6 @@ const CompPage = () => {
 
       <p className="text-lg text-gray-700 mb-8 text-center">{comp.description}</p>
 
-      {/* New Card with Rectangular Image Placeholder */}
-      <Card className="mb-6 overflow-hidden"> {/* Added overflow-hidden */}
-        <div className="w-full aspect-video bg-muted flex items-center justify-center"> {/* Rectangular container */}
-          <img
-            src="/placeholder.svg" // Using the existing placeholder image
-            alt={`${comp.name} image`}
-            className="w-full h-full object-cover" // Image fills and covers the container
-          />
-        </div>
-      </Card>
-
       <Separator className="my-8" />
 
 
@@ -90,6 +79,18 @@ const CompPage = () => {
                 ))}
               </div>
             </CardContent>
+          </Card>
+
+          {/* Moved and Resized Card with Rectangular Image Placeholder */}
+          {/* Added width classes (w-full, md:w-2/3, lg:w-1/2) and margin (my-6) */}
+          <Card className="my-6 overflow-hidden w-full md:w-2/3 lg:w-1/2 mx-auto">
+            <div className="w-full aspect-video bg-muted flex items-center justify-center">
+              <img
+                src="/placeholder.svg"
+                alt={`${comp.name} image`}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </Card>
 
           <Card className="mb-6">
