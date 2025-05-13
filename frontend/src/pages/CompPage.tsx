@@ -1,31 +1,19 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+// Removed unused import
+// import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 
-// Placeholder data structure for individual comps
-const compDetails: { [key: string]: any } = { // Using 'any' for simplicity with placeholder data
+// Placeholder data structure for individual comps - Removed champions and traits
+const compDetails: { [key: string]: { name: string; tier: string; imageUrl: string; description: string; guide: string } } = {
   'set-14-boulevard-of-broken-demons': {
     name: 'Set 14 Boulevard of Broken Demons',
     tier: 'S',
     imageUrl: '/placeholder.svg', // Placeholder for the main comp image
     description: 'A powerful S-tier composition focusing on late-game scaling.',
-    champions: [
-      { name: 'Champion 1', imageUrl: '/placeholder.svg', items: ['Item 1', 'Item 2', 'Item 3'] },
-      { name: 'Champion 2', imageUrl: '/placeholder.svg', items: ['Item 4', 'Item 5'] },
-      { name: 'Champion 3', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion 4', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion 5', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion 6', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion 7', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion 8', imageUrl: '/placeholder.svg', items: [] },
-    ],
-    traits: [
-      { name: 'Trait A', iconUrl: '/placeholder.svg', count: 4 },
-      { name: 'Trait B', iconUrl: '/placeholder.svg', count: 2 },
-      { name: 'Trait C', iconUrl: '/placeholder.svg', count: 2 },
-    ],
+    // Removed champions array
+    // Removed traits array
     guide: 'This is a placeholder guide for the Set 14 Boulevard of Broken Demons comp. Explain how to play this comp, including early game, mid game, late game, and positioning tips.',
   },
   'set-14-heavenly-reroll': {
@@ -33,15 +21,8 @@ const compDetails: { [key: string]: any } = { // Using 'any' for simplicity with
     tier: 'S',
     imageUrl: '/placeholder.svg',
     description: 'An aggressive reroll strategy for early dominance.',
-    champions: [
-      { name: 'Champion X', imageUrl: '/placeholder.svg', items: ['Item X', 'Item Y'] },
-      { name: 'Champion Y', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion Z', imageUrl: '/placeholder.svg', items: [] },
-    ],
-    traits: [
-      { name: 'Trait P', iconUrl: '/placeholder.svg', count: 3 },
-      { name: 'Trait Q', iconUrl: '/placeholder.svg', count: 3 },
-    ],
+    // Removed champions array
+    // Removed traits array
     guide: 'Guide for Heavenly Reroll...',
   },
    'set-14-inkshadow-invokers': {
@@ -49,15 +30,8 @@ const compDetails: { [key: string]: any } = { // Using 'any' for simplicity with
     tier: 'A',
     imageUrl: '/placeholder.svg',
     description: 'A magic-focused composition with strong spellcasters.',
-    champions: [
-      { name: 'Champion M', imageUrl: '/placeholder.svg', items: ['Item M', 'Item N'] },
-      { name: 'Champion N', imageUrl: '/placeholder.svg', items: [] },
-      { name: 'Champion O', imageUrl: '/placeholder.svg', items: [] },
-    ],
-    traits: [
-      { name: 'Trait R', iconUrl: '/placeholder.svg', count: 4 },
-      { name: 'Trait S', iconUrl: '/placeholder.svg', count: 2 },
-    ],
+    // Removed champions array
+    // Removed traits array
     guide: 'Guide for Inkshadow Invokers...',
   },
   // Add more comp details here, matching the URL-friendly name from MetaPage
