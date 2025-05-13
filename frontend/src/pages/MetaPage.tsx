@@ -30,9 +30,9 @@ const MetaPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {comps.map((comp) => (
               <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
-                <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col">
+                {/* Added 'relative' to the Card for absolute positioning context */}
+                <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative">
                   <CardHeader className="pb-2">
-                    {/* Removed overflow-hidden, text-ellipsis, and whitespace-nowrap */}
                     <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-between">
@@ -44,7 +44,10 @@ const MetaPage = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
+                    {/* Positioned the Badge absolutely */}
+                    <div className="absolute top-2 right-2">
+                       <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
+                    </div>
                   </CardContent>
                 </Card>
               </Link>
