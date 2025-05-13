@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge';
 
 const placeholderComps = {
   S: [
-    // Reverted imageUrls to a single imageUrl string
     { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
     { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
   ],
@@ -31,20 +30,23 @@ const MetaPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {comps.map((comp) => (
               <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
+                {/* Card is relative for absolute positioning context */}
                 <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
-                  <CardContent className="flex-grow flex flex-col justify-between">
-                    {/* Restored single Placeholder Image */}
-                    <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden">
+                  {/* Adjusted CardContent padding to make space for the image */}
+                  <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
+                    {/* Placeholder Image - Positioned Absolutely */}
+                    {/* Added absolute positioning, centered horizontally, positioned below header */}
+                    <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-gray-200 rounded-md flex items-center justify-center overflow-hidden">
                       <img
-                        // Use the single imageUrl
                         src={comp.imageUrl}
                         alt={`${comp.name} image`}
                         className="w-full h-full object-cover"
                       />
                     </div>
+                    {/* Tier Badge remains absolutely positioned */}
                     <div className="absolute top-2 right-2">
                        <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
                     </div>
