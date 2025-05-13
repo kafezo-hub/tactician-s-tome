@@ -45,7 +45,7 @@ const MetaPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Placeholder Cards for Team Comps with enhanced styling and hover effects */}
             {tierData.comps.map((comp, index) => ( // Use metaTiers data
-              <Link to={`/meta/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}> {/* Wrap Card with Link */}
+              <Link to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}> {/* Wrap Card with Link and correct the path */}
                 <Card className="hover:shadow-lg transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
                     <CardTitle>{comp.name}</CardTitle>
