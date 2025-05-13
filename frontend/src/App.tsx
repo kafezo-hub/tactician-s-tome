@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import MetaPage from './pages/MetaPage';
-import CompPage from './pages/CompPage'; // Import CompPage
-import NotFound from '@/pages/NotFound'; // Import NotFound
+import CompPage from './pages/CompPage';
+import NotFound from '@/pages/NotFound';
 
 function App() {
   return (
@@ -11,9 +11,12 @@ function App() {
         <Navbar />
         <main className="flex-grow container mx-auto p-4"> {/* Keep the main content area */}
           <Routes>
-            <Route path="/" element={<MetaPage />} /> {/* MetaPage is now the root */}
-            <Route path="/comp/:compId" element={<CompPage />} /> {/* Add route for CompPage */}
-            <Route path="*" element={<NotFound />} /> {/* Add NotFound route */}
+            {/* Add a route at the root path that redirects to /meta */}
+            <Route path="/" element={<Navigate to="/meta" replace />} />
+            {/* The MetaPage is now the target of the redirect */}
+            <Route path="/meta" element={<MetaPage />} />
+            <Route path="/comp/:compId" element={<CompPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         {/* Optional Footer here later */}
