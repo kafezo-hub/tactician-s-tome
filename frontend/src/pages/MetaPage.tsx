@@ -9,18 +9,34 @@ const placeholderComps = {
   S: [
     { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
     { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
+    // Added 3 more placeholder comps for Tier S
+    { name: 'Set 14 S Comp 3', tier: 'S', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 S Comp 4', tier: 'S', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 S Comp 5', tier: 'S', imageUrl: '/placeholder.svg' },
   ],
   A: [
     { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
     { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
+    // Added 3 more placeholder comps for Tier A
+    { name: 'Set 14 A Comp 3', tier: 'A', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 A Comp 4', tier: 'A', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 A Comp 5', tier: 'A', imageUrl: '/placeholder.svg' },
   ],
   B: [
     { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
     { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
+    // Added 3 more placeholder comps for Tier B
+    { name: 'Set 14 B Comp 3', tier: 'B', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 B Comp 4', tier: 'B', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 B Comp 5', tier: 'B', imageUrl: '/placeholder.svg' },
   ],
   C: [
     { name: 'Set 14 Comp C Example 1', tier: 'C', imageUrl: '/placeholder.svg' },
     { name: 'Set 14 Comp C Example 2', tier: 'C', imageUrl: '/placeholder.svg' },
+    // Added 3 more placeholder comps for Tier C
+    { name: 'Set 14 C Comp 3', tier: 'C', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 C Comp 4', tier: 'C', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 C Comp 5', tier: 'C', imageUrl: '/placeholder.svg' },
   ],
 };
 
@@ -28,24 +44,7 @@ const placeholderComps = {
 const fetchMetaComps = async () => {
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return {
-    S: [
-      { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
-      { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
-    ],
-    A: [
-      { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
-      { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
-    ],
-    B: [
-      { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
-      { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
-    ],
-    C: [
-      { name: 'Set 14 Comp C Example 1', tier: 'C', imageUrl: '/placeholder.svg' },
-      { name: 'Set 14 Comp C Example 2', tier: 'C', imageUrl: '/placeholder.svg' },
-    ],
-  };
+  return placeholderComps;
 };
 
 const MetaPage = () => {
@@ -91,7 +90,7 @@ const MetaPage = () => {
             tierColorClass = 'secondary';
             break;
           case 'C':
-            tierColorClass = 'green-500';
+            tierColorClass = 'green-500'; // Using a direct color for C tier
             break;
           default:
             tierColorClass = 'muted';
@@ -112,13 +111,9 @@ const MetaPage = () => {
                       className="min-w-0 min-h-0"
                     >
                       <Card className={`aspect-square flex flex-col bg-${tierColorClass}`}>
-                        <CardHeader className="pb-2">
-                          {/* CardTitle remains removed */}
-                        </CardHeader>
-                        {/* Adjusted CardContent styling - Changed justify-center to justify-start */}
-                        <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow gap-4"> {/* Changed justify-center to justify-start */}
+                        <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow gap-4">
                            {/* Comp Name Box */}
-                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-full`}>
+                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-sm font-semibold text-center max-w-full`}>
                             {comp.name}
                           </div>
                           {/* Image Placeholder */}
