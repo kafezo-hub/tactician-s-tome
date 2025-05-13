@@ -1,32 +1,21 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
-    <nav className="bg-gray-800 text-white p-4 shadow-md">
+    <nav className="bg-gray-800 p-4 text-white shadow-md"> {/* Added shadow */}
       <div className="container mx-auto flex justify-between items-center">
-        {/* Link to the main page (now MetaPage) */}
         <Link to="/" className="text-xl font-bold">
           Tactician's Tome
         </Link>
-        <div className="flex space-x-4">
-          {/* Remove links to deleted pages */}
-          {/* <Link to="/meta" className="hover:text-gray-300">
+        <div>
+          <Link to="/" className="mr-4 hover:text-gray-300">
             Meta Overview
-          </Link> */}
-          {/* <Link to="/champion-tiers" className="hover:text-gray-300">
-            Champion Tiers
-          </Link> */}
-          {/* <Link to="/items" className="hover:text-gray-300">
-            Items
-          </Link> */}
-          {/* <Link to="/team-comps" className="hover:text-gray-300">
-            Team Comps
-          </Link> */}
+          </Link>
+          {/* Removed other links */}
         </div>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default Navbar; // Added export default
