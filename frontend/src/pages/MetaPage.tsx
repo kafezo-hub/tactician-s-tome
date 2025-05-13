@@ -35,12 +35,21 @@ const MetaPage = () => {
                     <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    {/* Placeholder Image */}
-                    <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden"> {/* Added overflow-hidden */}
+                    {/* Placeholder Image - Updated Source */}
+                    <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden">
+                      {/*
+                        To use your own images:
+                        1. Place your image files in the /app/frontend/public folder.
+                        2. Update the `src` below to point to your image file's path relative to the public folder.
+                           For example, if you put an image named 'my-comp-image.png' in /app/frontend/public/images/,
+                           the src would be `/images/my-comp-image.png`.
+                        3. You might want to name your image files consistently, perhaps based on the comp name.
+                           Example: `/images/${comp.name.toLowerCase().replace(/\s+/g, '-')}.png`
+                      */}
                       <img
-                        src={`https://via.placeholder.com/300x150?text=${encodeURIComponent(comp.name)}`}
-                        alt={`${comp.name} placeholder image`}
-                        className="w-full h-full object-cover" // Use object-cover to maintain aspect ratio
+                        src={`/placeholder.svg`} // <-- Change this path to your image path
+                        alt={`${comp.name} image`}
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
