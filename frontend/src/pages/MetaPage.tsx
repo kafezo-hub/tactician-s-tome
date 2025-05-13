@@ -34,7 +34,6 @@ const fetchMetaComps = async (): Promise<{[key: string]: Comp[]}> => {
       { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
       { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
     ],
-    // Added Tier C placeholder data
     C: [
       { name: 'Set 14 Comp C Example 1', tier: 'C', imageUrl: '/placeholder.svg' },
       { name: 'Set 14 Comp C Example 2', tier: 'C', imageUrl: '/placeholder.svg' },
@@ -82,51 +81,58 @@ const MetaPage = () => {
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
 
-      {Object.entries(metaTiers).map(([tier, comps]) => (
-        <div key={tier} className="mb-12">
-          {/* Wrapped tier content in a new div for the box effect */}
-          {/* Replaced border classes with gradient background and added padding */}
-          <div className="bg-gradient-to-r from-primary to-accent p-1 rounded-md">
-            {/* Inner div for content with solid background and padding */}
-            <div className="bg-card p-3 rounded-md">
-              {/* Added styling for Tier C */}
-              <div className={`border-l-8 pl-4 mb-6 ${
-                tier === 'S' ? 'border-yellow-500' :
-                tier === 'A' ? 'border-purple-500' :
-                tier === 'B' ? 'border-blue-500' :
-                tier === 'C' ? 'border-green-500' : // Styling for Tier C
-                'border-gray-500'
-              }`}>
-                <h2 className="text-3xl font-semibold">{`Tier ${tier}`}</h2>
+      {Object.entries(metaTiers).map(([tier, comps]) => {
+        // Determine color class based on tier
+        const tierColorClass =
+          tier === 'S' ? 'yellow-500' :
+          tier === 'A' ? 'purple-500' :
+          tier === 'B' ? 'blue-500' :
+          tier === 'C' ? 'green-500' :
+          'gray-500';
+
+        return (
+          <div key={tier} className="mb-12">
+            {/* Flex container for the tier label box and the main content box */}
+            <div className="flex items-start gap-4">
+              {/* Tier Label Box */}
+              <div className={`bg-${tierColorClass} text-primary-foreground px-4 py-1 rounded-md font-bold text-xl whitespace-nowrap`}>
+                Tier {tier}
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {comps.map((comp) => (
-                  <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
-                    <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative">
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-lg">{comp.name}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
-                        {/* Placeholder Image - Positioned Absolutely */}
-                        <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
-                          <img
-                            src={comp.imageUrl} // Use imageUrl from fetched data
-                            alt={`${comp.name} image`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="absolute top-2 right-2">
-                           <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
+              {/* Main Content Box (the existing gradient box) */}
+              <div className="flex-grow bg-gradient-to-r from-primary to-accent p-1 rounded-md">
+                <div className="bg-card p-3 rounded-md">
+                  {/* Removed the old h2 and its container div */}
+                  {/* The grid of comp cards remains */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {comps.map((comp) => (
+                      <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
+                        <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative">
+                          <CardHeader className="pb-2">
+                            <CardTitle className="text-lg">{comp.name}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
+                            {/* Placeholder Image - Positioned Absolutely */}
+                            <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
+                              <img
+                                src={comp.imageUrl} // Use imageUrl from fetched data
+                                alt={`${comp.name} image`}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="absolute top-2 right-2">
+                               <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
