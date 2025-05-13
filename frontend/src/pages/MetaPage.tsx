@@ -109,10 +109,10 @@ const MetaPage = () => {
                           <CardHeader className="pb-2">
                             {/* CardTitle remains removed */}
                           </CardHeader>
-                          {/* Revised CardContent layout using flexbox */}
-                          <CardContent className="flex flex-col items-center justify-start p-4 pt-0">
-                             {/* Comp name in a colored box - Added max-w-full */}
-                            <div className={`bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold mb-4 text-center max-w-full`}> {/* Added max-w-full */}
+                          {/* Revised CardContent layout using flexbox for internal elements */}
+                          <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow"> {/* Added flex-grow */}
+                             {/* Comp name in a colored box - positioned relatively within flex */}
+                            <div className={`bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold mb-4 text-center max-w-full`}>
                                {comp.name}
                             </div>
                             {/* Placeholder Image - positioned relatively within flex */}
