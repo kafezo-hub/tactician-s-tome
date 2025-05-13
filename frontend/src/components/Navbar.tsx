@@ -9,6 +9,10 @@ const Navbar: React.FC = () => {
           Tactician's Tome
         </Link>
         <div className="flex space-x-4">
+          {/* Add link to MetaPage */}
+          <Link to="/meta" className="hover:text-gray-300">
+            Meta Overview
+          </Link>
           {/* Placeholder links */}
           <Link to="/champion-tiers" className="hover:text-gray-300">
             Champion Tiers
