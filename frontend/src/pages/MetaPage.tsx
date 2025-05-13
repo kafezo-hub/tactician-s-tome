@@ -96,8 +96,8 @@ const MetaPage = () => {
                     >
                       <Card className={`aspect-square flex flex-col bg-${tierColorClass}`}>
                         <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow">
-                           {/* Comp Name Box - Reverted max-width */}
-                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center mb-4 max-w-[calc(100%-1.5rem)]`}> {/* Reverted max-w-[95%] to max-w-[calc(100%-1.5rem)] */}
+                           {/* Comp Name Box - Reverted max-width to max-w-full */}
+                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center mb-4 max-w-full`}> {/* Changed max-w-[calc(100%-1.5rem)] to max-w-full */}
                             {comp.name}
                           </div>
                           {/* Image Placeholder */}
