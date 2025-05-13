@@ -55,6 +55,17 @@ const CompPage = () => {
 
       <p className="text-lg text-gray-700 mb-8 text-center">{comp.description}</p>
 
+      {/* New Card with Rectangular Image Placeholder */}
+      <Card className="mb-6 overflow-hidden"> {/* Added overflow-hidden */}
+        <div className="w-full aspect-video bg-muted flex items-center justify-center"> {/* Rectangular container */}
+          <img
+            src="/placeholder.svg" // Using the existing placeholder image
+            alt={`${comp.name} image`}
+            className="w-full h-full object-cover" // Image fills and covers the container
+          />
+        </div>
+      </Card>
+
       <Separator className="my-8" />
 
 
@@ -73,14 +84,6 @@ const CompPage = () => {
                         <AvatarImage src={`/placeholder.svg`} alt={champ.name} />
                         <AvatarFallback>{champ.name.substring(0, 2)}</AvatarFallback>
                       </Avatar>
-                      {/* Removed item placeholder div */}
-                      {/*
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-1">
-                        {[...Array(champ.items)].map((_, itemIndex) => (
-                          <div key={itemIndex} className="w-3 h-3 bg-blue-500 rounded-full border border-blue-700 shadow-sm"></div>
-                        ))}
-                      </div>
-                      */}
                     </div>
                     <span className="mt-2 text-sm text-center">{champ.name}</span>
                   </div>
