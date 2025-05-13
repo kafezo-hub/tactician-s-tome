@@ -4,16 +4,16 @@ import { Badge } from '@/components/ui/badge';
 
 const placeholderComps = {
   S: [
-    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S' },
-    { name: 'Set 14 Heavenly Reroll', tier: 'S' },
+    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrls: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'] },
+    { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrls: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'] },
   ],
   A: [
-    { name: 'Set 14 Inkshadow Invokers', tier: 'A' },
-    { name: 'Set 14 Storyweaver Reroll', tier: 'A' },
+    { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrls: ['/placeholder.svg', '/placeholder.svg'] },
+    { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrls: ['/placeholder.svg', '/placeholder.svg'] },
   ],
   B: [
-    { name: 'Set 14 Fated Duelists', tier: 'B' },
-    { name: 'Set 14 Umbral Bruisers', tier: 'B' },
+    { name: 'Set 14 Fated Duelists', tier: 'B', imageUrls: ['/placeholder.svg'] },
+    { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrls: ['/placeholder.svg'] },
   ],
 };
 
@@ -30,21 +30,25 @@ const MetaPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {comps.map((comp) => (
               <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
-                {/* Added 'relative' to the Card for absolute positioning context */}
                 <Card className="hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-between">
-                    {/* Placeholder Image */}
-                    <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                      <img
-                        src={`/placeholder.svg`}
-                        alt={`${comp.name} image`}
-                        className="w-full h-full object-cover"
-                      />
+                    {/* Placeholder Images in a row */}
+                    {/* Added flex container for images */}
+                    <div className="flex items-center justify-center space-x-2 mb-4">
+                      {comp.imageUrls.map((imageUrl, index) => (
+                        // Styled individual image placeholder
+                        <div key={index} className="w-10 h-10 bg-gray-300 rounded-full overflow-hidden border-2 border-gray-400">
+                           <img
+                            src={imageUrl}
+                            alt={`${comp.name} image ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
                     </div>
-                    {/* Positioned the Badge absolutely */}
                     <div className="absolute top-2 right-2">
                        <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
                     </div>
