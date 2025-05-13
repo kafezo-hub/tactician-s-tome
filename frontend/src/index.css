@@ -46,5 +46,6 @@
 
 body {
   color: hsl(var(--foreground));
+  /* Ensure body background uses the theme background color */
   background-color: hsl(var(--background));
 }
