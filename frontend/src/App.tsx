@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import IndexPage from './pages/Index';
+// Remove imports for deleted pages
+// import IndexPage from './pages/Index';
 import Navbar from './components/Navbar';
 import MetaPage from './pages/MetaPage';
-import CompPage from './pages/CompPage'; // Import the new CompPage
+// Remove import for deleted page
+// import CompPage from './pages/CompPage';
 
 function App() {
   return (
@@ -11,14 +13,15 @@ function App() {
         <Navbar />
         <main className="flex-grow container mx-auto p-4">
           <Routes>
-            <Route path="/" element={<IndexPage />} />
-            <Route path="/meta" element={<MetaPage />} />
-            <Route path="/meta/:compId" element={<CompPage />} /> {/* Add the dynamic route for CompPage */}
-            {/* Placeholder routes */}
+            {/* Set MetaPage as the only route at the root path */}
+            <Route path="/" element={<MetaPage />} />
+            {/* Remove other routes */}
+            {/* <Route path="/meta" element={<MetaPage />} /> */}
+            {/* <Route path="/meta/:compId" element={<CompPage />} /> */}
             {/* <Route path="/champion-tiers" element={<ChampionTiersPage />} /> */}
             {/* <Route path="/items" element={<ItemsPage />} /> */}
             {/* <Route path="/team-comps" element={<TeamCompsPage />} /> */}
-            {/* Add a catch-all for 404 pages later if needed */}
+            {/* Remove 404 catch-all if it exists */}
           </Routes>
         </main>
         {/* Optional Footer here later */}

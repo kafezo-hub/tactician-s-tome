@@ -5,24 +5,24 @@ const Navbar: React.FC = () => {
   return (
     <nav className="bg-gray-800 text-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
+        {/* Link to the main page (now MetaPage) */}
         <Link to="/" className="text-xl font-bold">
           Tactician's Tome
         </Link>
         <div className="flex space-x-4">
-          {/* Add link to MetaPage */}
-          <Link to="/meta" className="hover:text-gray-300">
+          {/* Remove links to deleted pages */}
+          {/* <Link to="/meta" className="hover:text-gray-300">
             Meta Overview
-          </Link>
-          {/* Placeholder links */}
-          <Link to="/champion-tiers" className="hover:text-gray-300">
+          </Link> */}
+          {/* <Link to="/champion-tiers" className="hover:text-gray-300">
             Champion Tiers
-          </Link>
-          <Link to="/items" className="hover:text-gray-300">
+          </Link> */}
+          {/* <Link to="/items" className="hover:text-gray-300">
             Items
-          </Link>
-          <Link to="/team-comps" className="hover:text-gray-300">
+          </Link> */}
+          {/* <Link to="/team-comps" className="hover:text-gray-300">
             Team Comps
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>
