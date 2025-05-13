@@ -1,58 +1,49 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
-const MetaPage: React.FC = () => {
-  // Placeholder data structure for tiers and comps
-  const metaTiers = [
-    {
-      tier: 'S',
-      color: 'border-yellow-500 text-yellow-500', // Example color for S tier
-      comps: [
-        { name: 'Comp A', description: 'Strongest comp right now.' },
-        { name: 'Comp B', description: 'Another top-tier comp.' },
-      ],
-    },
-    {
-      tier: 'A',
-      color: 'border-purple-500 text-purple-500', // Example color for A tier
-      comps: [
-        { name: 'Comp C', description: 'Very strong, slightly less dominant.' },
-        { name: 'Comp D', description: 'Solid choice for climbing.' },
-        { name: 'Comp E', description: 'Good alternative.' },
-      ],
-    },
-    {
-      tier: 'B',
-      color: 'border-blue-500 text-blue-500', // Example color for B tier
-      comps: [
-        { name: 'Comp F', description: 'Viable, but requires specific conditions.' },
-      ],
-    },
-    // Add more tiers as needed
-  ];
+const placeholderComps = {
+  S: [
+    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S' },
+    { name: 'Set 14 Heavenly Reroll', tier: 'S' },
+  ],
+  A: [
+    { name: 'Set 14 Inkshadow Invokers', tier: 'A' },
+    { name: 'Set 14 Storyweaver Reroll', tier: 'A' },
+  ],
+  B: [
+    { name: 'Set 14 Fated Duelists', tier: 'B' },
+    { name: 'Set 14 Umbral Bruisers', tier: 'B' },
+  ],
+};
 
-
+const MetaPage = () => {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
 
-      {metaTiers.map((tierData) => (
-        <div key={tierData.tier} className="mb-10">
-          <h2 className={`text-3xl font-semibold mb-6 border-l-4 pl-4 ${tierData.color}`}>
-            Tier {tierData.tier}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Placeholder Cards for Team Comps with enhanced styling and hover effects */}
-            {tierData.comps.map((comp, index) => ( // Use metaTiers data
-              <Link to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} key={index}> {/* Wrap Card with Link and correct the path */}
-                <Card className="hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+      {Object.entries(placeholderComps).map(([tier, comps]) => (
+        <div key={tier} className="mb-12">
+          <div className={`border-l-8 pl-4 mb-6 ${tier === 'S' ? 'border-yellow-500' : tier === 'A' ? 'border-green-500' : tier === 'B' ? 'border-blue-500' : 'border-gray-500'}`}>
+            <h2 className="text-3xl font-semibold">{`Tier ${tier}`}</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {comps.map((comp) => (
+              <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                <Card className="hover:shadow-lg transition-shadow duration-200">
                   <CardHeader>
-                    <CardTitle>{comp.name}</CardTitle>
+                    <CardTitle className="text-lg">{comp.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-500">{comp.description}</p>
-                    {/* Add placeholder for champion icons here later */}
+                    {/* Placeholder Image */}
+                    <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden"> {/* Added overflow-hidden */}
+                      <img
+                        src={`https://via.placeholder.com/300x150?text=${encodeURIComponent(comp.name)}`}
+                        alt={`${comp.name} placeholder image`}
+                        className="w-full h-full object-cover" // Use object-cover to maintain aspect ratio
+                      />
+                    </div>
+                    <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
                   </CardContent>
                 </Card>
               </Link>
