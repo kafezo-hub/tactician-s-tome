@@ -31,7 +31,9 @@ const placeholderComp = {
 const CompPage = () => {
   const { compId } = useParams<{ compId: string }>();
   const location = useLocation(); // Get location object
-  const { tier } = location.state as { tier: string } || { tier: 'N/A' }; // Access tier from state, default to 'N/A'
+  // Access tier from state, default to 'N/A' if state or state.tier is undefined
+  const tier = (location.state as { tier?: string })?.tier || 'N/A';
+
 
   // In a real app, you would fetch comp data based on compId
   // For now, we'll use the placeholder data and derive the name from the URL
