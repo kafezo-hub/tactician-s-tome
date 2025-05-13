@@ -111,8 +111,8 @@ const MetaPage = () => {
                           </CardHeader>
                           {/* Revised CardContent layout using flexbox */}
                           <CardContent className="flex flex-col items-center justify-start p-4 pt-0">
-                             {/* Comp name in a colored box - Increased horizontal padding */}
-                            <div className={`bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold mb-4 text-center`}> {/* Changed px-2 to px-3 */}
+                             {/* Comp name in a colored box - Added max-w-full */}
+                            <div className={`bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold mb-4 text-center max-w-full`}> {/* Added max-w-full */}
                                {comp.name}
                             </div>
                             {/* Placeholder Image - positioned relatively within flex */}
