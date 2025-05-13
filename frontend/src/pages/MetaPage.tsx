@@ -27,16 +27,15 @@ const MetaPage = () => {
           <div className={`border-l-8 pl-4 mb-6 ${tier === 'S' ? 'border-yellow-500' : tier === 'A' ? 'border-green-500' : tier === 'B' ? 'border-blue-500' : 'border-gray-500'}`}>
             <h2 className="text-3xl font-semibold">{`Tier ${tier}`}</h2>
           </div>
+          {/* Added gap-6 to create space between grid items */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {comps.map((comp) => (
               <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                {/* Added aspect-square and h-full to the Card for consistent size */}
                 <Card className="hover:shadow-lg transition-shadow duration-200 h-full aspect-square flex flex-col">
-                  <CardHeader className="pb-2"> {/* Adjusted padding */}
-                    {/* Added overflow-hidden and text-ellipsis to handle long titles */}
+                  <CardHeader className="pb-2">
                     <CardTitle className="text-lg overflow-hidden text-ellipsis whitespace-nowrap">{comp.name}</CardTitle>
                   </CardHeader>
-                  <CardContent className="flex-grow flex flex-col justify-between"> {/* Added flex-grow and flex properties */}
+                  <CardContent className="flex-grow flex flex-col justify-between">
                     {/* Placeholder Image */}
                     <div className="w-full h-32 bg-gray-200 rounded-md mb-4 flex items-center justify-center overflow-hidden">
                       <img
