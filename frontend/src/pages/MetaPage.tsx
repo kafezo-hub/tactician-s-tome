@@ -82,12 +82,12 @@ const MetaPage = () => {
       <h1 className="text-4xl font-bold mb-8 text-center">Meta Overview</h1>
 
       {Object.entries(metaTiers).map(([tier, comps]) => {
-        // Determine color class based on tier
+        // Determine color class based on tier, using theme colors where appropriate
         const tierColorClass =
-          tier === 'S' ? 'yellow-500' :
-          tier === 'A' ? 'purple-500' :
-          tier === 'B' ? 'blue-500' :
-          tier === 'C' ? 'green-500' :
+          tier === 'S' ? 'yellow-500' : // Keeping standard yellow for S
+          tier === 'A' ? 'purple-500' : // Keeping standard purple for A
+          tier === 'B' ? 'secondary' : // Using theme's secondary color (Neon Blue) for B
+          tier === 'C' ? 'green-500' : // Keeping standard green for C
           'gray-500';
 
         return (
