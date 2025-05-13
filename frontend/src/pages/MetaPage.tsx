@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useQuery } from '@tanstack/react-query'; // Import useQuery
-import { Skeleton } from '@/components/ui/skeleton'; // Import Skeleton for loading state
+import { useQuery } from '@tanstack/react-query';
+import { Skeleton } from '@/components/ui/skeleton';
 
 // Define a type for the expected data structure (adjust based on actual API response)
 interface Comp {
@@ -33,6 +33,11 @@ const fetchMetaComps = async (): Promise<{[key: string]: Comp[]}> => {
     B: [
       { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
       { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
+    ],
+    // Added Tier C placeholder data
+    C: [
+      { name: 'Set 14 Comp C Example 1', tier: 'C', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Comp C Example 2', tier: 'C', imageUrl: '/placeholder.svg' },
     ],
   };
 };
@@ -79,7 +84,14 @@ const MetaPage = () => {
 
       {Object.entries(metaTiers).map(([tier, comps]) => (
         <div key={tier} className="mb-12">
-          <div className={`border-l-8 pl-4 mb-6 ${tier === 'S' ? 'border-yellow-500' : tier === 'A' ? 'border-green-500' : tier === 'B' ? 'border-blue-500' : 'border-gray-500'}`}>
+          {/* Added styling for Tier C */}
+          <div className={`border-l-8 pl-4 mb-6 ${
+            tier === 'S' ? 'border-yellow-500' :
+            tier === 'A' ? 'border-purple-500' :
+            tier === 'B' ? 'border-blue-500' :
+            tier === 'C' ? 'border-green-500' : // Styling for Tier C
+            'border-gray-500'
+          }`}>
             <h2 className="text-3xl font-semibold">{`Tier ${tier}`}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
