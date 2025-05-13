@@ -108,7 +108,8 @@ const MetaPage = () => {
                         {/* Added dynamic background color class to the Card */}
                         <Card className={`hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative bg-${tierColorClass}`}>
                           <CardHeader className="pb-2">
-                            <CardTitle className="text-lg">{comp.name}</CardTitle>
+                            {/* Removed the CardTitle component */}
+                            {/* The comp name is now displayed below the image placeholder */}
                           </CardHeader>
                           <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
                             {/* Placeholder Image - Positioned Absolutely */}
@@ -119,6 +120,7 @@ const MetaPage = () => {
                                 className="w-full h-full object-cover"
                               />
                             </div>
+                            {/* Removed the redundant comp name text div */}
                             <div className="absolute top-2 right-2">
                                {/* You might want to adjust the Badge color or text color for better contrast */}
                                <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
