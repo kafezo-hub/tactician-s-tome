@@ -28,7 +28,24 @@ const placeholderComps = {
 const fetchMetaComps = async () => {
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return placeholderComps;
+  return {
+    S: [
+      { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
+    ],
+    A: [
+      { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
+    ],
+    B: [
+      { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
+    ],
+    C: [
+      { name: 'Set 14 Comp C Example 1', tier: 'C', imageUrl: '/placeholder.svg' },
+      { name: 'Set 14 Comp C Example 2', tier: 'C', imageUrl: '/placeholder.svg' },
+    ],
+  };
 };
 
 const MetaPage = () => {
@@ -65,16 +82,16 @@ const MetaPage = () => {
         let tierColorClass = '';
         switch (tier) {
           case 'S':
-            tierColorClass = 'primary';
+            tierColorClass = 'yellow-500';
             break;
           case 'A':
-            tierColorClass = 'accent';
+            tierColorClass = 'purple-500';
             break;
           case 'B':
             tierColorClass = 'secondary';
             break;
           case 'C':
-            tierColorClass = 'green-500'; // Using a direct color for C tier
+            tierColorClass = 'green-500';
             break;
           default:
             tierColorClass = 'muted';
@@ -95,9 +112,13 @@ const MetaPage = () => {
                       className="min-w-0 min-h-0"
                     >
                       <Card className={`aspect-square flex flex-col bg-${tierColorClass}`}>
-                        <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow">
-                           {/* Comp Name Box - Reverted max-width to max-w-full */}
-                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center mb-4 max-w-full`}> {/* Changed max-w-[calc(100%-1.5rem)] to max-w-full */}
+                        <CardHeader className="pb-2">
+                          {/* CardTitle remains removed */}
+                        </CardHeader>
+                        {/* Adjusted CardContent styling */}
+                        <CardContent className="flex flex-col items-center justify-center p-4 pt-0 flex-grow gap-4"> {/* Changed justify-start to justify-center and added gap-4 */}
+                           {/* Comp Name Box - Removed mb-4 */}
+                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-full`}> {/* Removed mb-4 */}
                             {comp.name}
                           </div>
                           {/* Image Placeholder */}
