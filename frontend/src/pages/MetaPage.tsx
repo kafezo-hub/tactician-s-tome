@@ -104,43 +104,31 @@ const MetaPage = () => {
                   {/* The grid of comp cards remains */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {comps.map((comp) => (
-                      // Link now wraps both the Card and the comp name div
-                      <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0 flex flex-col items-center"> {/* Added flex and items-center */}
-                        <Card className={`hover:shadow-lg transition-shadow duration-200 w-full aspect-square flex flex-col relative bg-${tierColorClass}`}> {/* Removed h-full */}
+                      <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0 flex flex-col items-center">
+                        <Card className={`hover:shadow-lg transition-shadow duration-200 w-full aspect-square flex flex-col relative bg-${tierColorClass}`}>
                           <CardHeader className="pb-2">
                             {/* CardTitle remains removed */}
                           </CardHeader>
-                          <CardContent className="flex-grow flex flex-col justify-between pt-0 px-4 pb-4">
-                             {/* Comp name in a colored box, positioned absolutely - Adjusted top position */}
-                            <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-${tierColorClass} text-primary-foreground px-2 py-1 rounded-md text-sm font-semibold whitespace-nowrap`}>
+                          {/* Revised CardContent layout using flexbox */}
+                          <CardContent className="flex flex-col items-center justify-start p-4 pt-0">
+                             {/* Comp name in a colored box - positioned relatively within flex */}
+                            <div className={`bg-${tierColorClass} text-primary-foreground px-2 py-1 rounded-md text-sm font-semibold whitespace-nowrap mb-4`}>
                                {comp.name}
                             </div>
-                            {/* Placeholder Image - Positioned Absolutely */}
-                            <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
+                            {/* Placeholder Image - positioned relatively within flex */}
+                            <div className="w-full h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
                               <img
-                                src={comp.imageUrl} // Use imageUrl from fetched data
+                                src={comp.imageUrl}
                                 alt={`${comp.name} image`}
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            {/* Removed the comp name text div from the bottom */}
-                            {/*
-                            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center text-sm font-semibold text-foreground">
-                               {comp.name}
-                            </div>
-                            */}
+                            {/* Tier Badge remains absolutely positioned */}
                             <div className="absolute top-2 right-2">
-                               {/* You might want to adjust the Badge color or text color for better contrast */}
                                <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
                             </div>
                           </CardContent>
                         </Card>
-                        {/* Removed the comp name text div outside the Card */}
-                        {/*
-                        <div className="text-center text-sm font-semibold text-foreground mt-2">
-                           {comp.name}
-                        </div>
-                        */}
                       </Link>
                     ))}
                   </div>
