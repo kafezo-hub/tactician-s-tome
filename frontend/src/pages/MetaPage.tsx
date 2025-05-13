@@ -104,9 +104,9 @@ const MetaPage = () => {
                   {/* The grid of comp cards remains */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {comps.map((comp) => (
-                      <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0">
-                        {/* Added dynamic background color class to the Card */}
-                        <Card className={`hover:shadow-lg transition-shadow duration-200 w-full h-full aspect-square flex flex-col relative bg-${tierColorClass}`}>
+                      // Link now wraps both the Card and the comp name div
+                      <Link key={comp.name} to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`} className="min-w-0 min-h-0 flex flex-col items-center"> {/* Added flex and items-center */}
+                        <Card className={`hover:shadow-lg transition-shadow duration-200 w-full aspect-square flex flex-col relative bg-${tierColorClass}`}> {/* Removed h-full */}
                           <CardHeader className="pb-2">
                             {/* CardTitle remains removed */}
                           </CardHeader>
@@ -119,16 +119,22 @@ const MetaPage = () => {
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            {/* Added back the comp name text div */}
+                            {/* Removed the comp name text div from here */}
+                            {/*
                             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center text-sm font-semibold text-foreground">
                                {comp.name}
                             </div>
+                            */}
                             <div className="absolute top-2 right-2">
                                {/* You might want to adjust the Badge color or text color for better contrast */}
                                <Badge variant="secondary">{`Tier ${comp.tier}`}</Badge>
                             </div>
                           </CardContent>
                         </Card>
+                        {/* Added the comp name text div outside the Card */}
+                        <div className="text-center text-sm font-semibold text-foreground mt-2"> {/* Added mt-2 for spacing */}
+                           {comp.name}
+                        </div>
                       </Link>
                     ))}
                   </div>
