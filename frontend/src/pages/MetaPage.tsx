@@ -108,26 +108,23 @@ const MetaPage = () => {
                     <Link
                       key={index}
                       to={`/comp/${comp.name.toLowerCase().replace(/\s+/g, '-')}`}
+                      state={{ tier: comp.tier }} // Pass the tier in the state
                       className="min-w-0 min-h-0"
                     >
-                      <Card className={`aspect-square flex flex-col relative bg-${tierColorClass}`}>
-                        <CardHeader className="pb-2">
-                          {/* CardTitle remains removed */}
-                        </CardHeader>
-                        {/* Adjusted CardContent styling - Added relative positioning */}
-                        <CardContent className="relative flex-grow p-4 pt-0"> {/* Added relative and adjusted padding */}
-                           {/* Comp name in a colored box - positioned absolutely */}
-                          <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-[calc(100%-1.5rem)]`}>
-                               {comp.name}
-                            </div>
-                            {/* Image Placeholder - positioned absolutely */}
-                            <div className="absolute top-[6rem] left-1/2 transform -translate-x-1/2 w-full max-w-[calc(100%-2rem)] h-32 bg-muted rounded-md flex items-center justify-center overflow-hidden shadow-sm">
-                              <img
-                                src={comp.imageUrl}
-                                alt={`${comp.name} image`}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
+                      <Card className={`aspect-square flex flex-col bg-${tierColorClass}`}>
+                        <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow gap-4">
+                           {/* Comp Name Box */}
+                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center max-w-full`}>
+                            {comp.name}
+                          </div>
+                          {/* Image Placeholder */}
+                          <div className="w-full h-auto aspect-video overflow-hidden rounded-md bg-muted shadow-sm">
+                            <img
+                              src={comp.imageUrl}
+                              alt={`${comp.name} image`}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
                            {/* Tier Badge (Absolute Positioned) */}
                           <Badge className="absolute top-2 right-2">Tier {tier}</Badge>
                         </CardContent>

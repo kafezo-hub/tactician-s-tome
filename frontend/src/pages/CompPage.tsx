@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom'; // Import useLocation
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -8,10 +8,9 @@ import { Separator } from '@/components/ui/separator';
 const placeholderComp = {
   id: '1',
   name: 'Placeholder Comp',
-  tier: 'S',
+  // tier: 'S', // Removed hardcoded tier
   description: 'A strong composition focusing on key units and synergies.',
   champions: [
-    // Removed 'items' property as it's no longer used for rendering placeholders
     { name: 'Champion 1' },
     { name: 'Champion 2' },
     { name: 'Champion 3' },
@@ -31,13 +30,24 @@ const placeholderComp = {
 
 const CompPage = () => {
   const { compId } = useParams<{ compId: string }>();
+  const location = useLocation(); // Get location object
+  const { tier } = location.state as { tier: string } || { tier: 'N/A' }; // Access tier from state, default to 'N/A'
 
   // In a real app, you would fetch comp data based on compId
   // For now, we'll use the placeholder data and derive the name from the URL
   const comp = {
       ...placeholderComp,
-      name: compId ? compId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Loading Comp...'
+      name: compId ? compId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Loading Comp...',
+      tier: tier // Use the tier from the route state
   };
+
+  // Determine color class based on tier (same logic as MetaPage for consistency)
+  const tierColorClass =
+    comp.tier === 'S' ? 'yellow-500' :
+    comp.tier === 'A' ? 'purple-500' :
+    comp.tier === 'B' ? 'secondary' :
+    comp.tier === 'C' ? 'green-500' :
+    'gray-500';
 
 
   if (!comp) {
@@ -48,7 +58,8 @@ const CompPage = () => {
     <div className="container mx-auto p-4">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">{comp.name}</h1>
-        <Badge className={`text-lg px-4 py-1 ${comp.tier === 'S' ? 'bg-yellow-500' : comp.tier === 'A' ? 'bg-purple-500' : 'bg-gray-500'}`}>
+        {/* Use dynamic tier and color class for the Badge */}
+        <Badge className={`text-lg px-4 py-1 bg-${tierColorClass}`}>
           Tier {comp.tier}
         </Badge>
       </div>
@@ -82,7 +93,6 @@ const CompPage = () => {
           </Card>
 
           {/* Moved and Resized Card with Rectangular Image Placeholder */}
-          {/* Added width classes (w-full, md:w-2/3, lg:w-1/2) and margin (my-6) */}
           <Card className="my-6 overflow-hidden w-full md:w-2/3 lg:w-1/2 mx-auto">
             <div className="w-full aspect-video bg-muted flex items-center justify-center">
               <img
