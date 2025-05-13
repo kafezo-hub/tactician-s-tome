@@ -7,20 +7,20 @@ import { Skeleton } from '@/components/ui/skeleton';
 // Placeholder data structure for meta comps
 const placeholderComps = {
   S: [
-    { name: 'Set 14 Fate Duelist', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Cybernetic Swordsman', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Boulevard of Broken Demons', tier: 'S', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Heavenly Reroll', tier: 'S', imageUrl: '/placeholder.svg' },
   ],
   A: [
-    { name: 'Set 14 Galactic Sniper', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Storyweaver Reroll', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Inkshadow Invokers', tier: 'A', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Storyweaver Reroll', tier: 'A', imageUrl: '/placeholder.svg' },
   ],
   B: [
-    { name: 'Set 14 Mystic Enchanter', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Wasteland Bruiser', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Fated Duelists', tier: 'B', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Umbral Bruisers', tier: 'B', imageUrl: '/placeholder.svg' },
   ],
   C: [
-    { name: 'Set 14 City Defender', imageUrl: '/placeholder.svg' },
-    { name: 'Set 14 Forest Shaman', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Comp C Example 1', tier: 'C', imageUrl: '/placeholder.svg' },
+    { name: 'Set 14 Comp C Example 2', tier: 'C', imageUrl: '/placeholder.svg' },
   ],
 };
 
@@ -96,8 +96,8 @@ const MetaPage = () => {
                     >
                       <Card className={`aspect-square flex flex-col bg-${tierColorClass}`}>
                         <CardContent className="flex flex-col items-center justify-start p-4 pt-0 flex-grow">
-                           {/* Comp Name Box - Adjusted max-width */}
-                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center mb-4 max-w-[95%]`}> {/* Changed max-w-[calc(100%-1.5rem)] to max-w-[95%] */}
+                           {/* Comp Name Box - Reverted max-width */}
+                          <div className={`w-full bg-${tierColorClass} text-primary-foreground px-3 py-1 rounded-md text-xs font-semibold text-center mb-4 max-w-[calc(100%-1.5rem)]`}> {/* Reverted max-w-[95%] to max-w-[calc(100%-1.5rem)] */}
                             {comp.name}
                           </div>
                           {/* Image Placeholder */}
