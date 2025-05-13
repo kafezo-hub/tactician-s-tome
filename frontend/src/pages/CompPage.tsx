@@ -72,27 +72,22 @@ const tierColorClasses: { [key: string]: string } = {
 
 const CompPage: React.FC = () => {
   const { compId } = useParams<{ compId: string }>();
-  // We can still use location state for fallback or additional data if needed,
-  // but we'll primarily rely on the compDetails lookup for now.
-  // const location = useLocation();
-  // const tierFromState = (location.state as { tier?: string })?.tier || 'N/A';
+  const location = useLocation();
+  const tier = (location.state as { tier?: string })?.tier || 'N/A';
 
 
-  // Find the comp details based on the compId from the URL
   const comp = compDetails[compId || ''];
 
   if (!comp) {
-    return <div className="container mx-auto py-8 text-center">Comp not found!</div>; // Handle case where compId doesn't match
+    return <div className="container mx-auto py-8 text-center">Comp not found!</div>;
   }
 
-  // Use the tier from the looked-up comp data
   const tierColorClass = tierColorClasses[comp.tier] || 'bg-gray-500';
 
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">{comp.name}</h1>
-        {/* Use dynamic tier and color class from looked-up data for the Badge */}
         <Badge className={`text-lg px-4 py-1 ${tierColorClass} text-primary-foreground`}>{comp.tier}</Badge>
       </div>
 
@@ -109,59 +104,24 @@ const CompPage: React.FC = () => {
 
       <Separator className="my-8" />
 
-
+      {/* Removed the grid container and the Champion Lineup and Active Traits Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Champion Lineup Card */}
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle>Champion Lineup</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-4">
-            {comp.champions.map((champion: any, index: number) => ( // Use any for placeholder data
-              <div key={index} className="flex flex-col items-center">
-                <Avatar className="w-16 h-16 border-2 border-primary">
-                  <AvatarImage src={champion.imageUrl} alt={champion.name} />
-                  <AvatarFallback>{champion.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <span className="text-sm mt-1">{champion.name}</span>
-                <div className="flex gap-1 mt-1">
-                  {/* Item Placeholders */}
-                  {champion.items.map((item: string, itemIndex: number) => ( // Use string for placeholder data
-                    <div key={itemIndex} className="w-4 h-4 bg-blue-500 rounded-full border border-blue-700 shadow-sm" title={item}></div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        {/* Removed md:col-span-2 div */}
+        {/* Removed Champion Lineup Card */}
+        {/* Removed Active Traits Card */}
 
-        {/* Active Traits Card */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Active Traits</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-2">
-            {comp.traits.map((trait: any, index: number) => ( // Use any for placeholder data
-              <Badge key={index} className="flex items-center gap-1 bg-muted text-foreground">
-                 {/* Trait Icon Placeholder */}
-                <div className="w-4 h-4 bg-green-500 border border-green-700 shadow-sm"></div>
-                {trait.name} ({trait.count})
-              </Badge>
-            ))}
-          </CardContent>
-        </Card>
+        {/* How to Play Guide Card - Adjusted grid column span if needed */}
+        <div className="md:col-span-3"> {/* Adjusted to span 3 columns on medium screens and up */}
+          <Card>
+            <CardHeader>
+              <CardTitle>How to Play</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>{comp.guide}</p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-
-      {/* How to Play Guide Card */}
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>How to Play</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>{comp.guide}</p>
-        </CardContent>
-      </Card>
-
     </div>
   );
 };
