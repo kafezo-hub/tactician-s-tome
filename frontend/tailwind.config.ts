@@ -74,6 +74,14 @@ const config = {
       },
     },
   },
+  // Added safelist to include dynamic background colors
+  safelist: [
+    'bg-yellow-500',
+    'bg-purple-500',
+    'bg-secondary',
+    'bg-green-500',
+    'bg-gray-500',
+  ],
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
