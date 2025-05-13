@@ -5,7 +5,8 @@ const Navbar = () => {
     <nav className="bg-gray-800 p-4 text-white shadow-md"> {/* Added shadow */}
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
-          Tactician's Tome
+          {/* Updated title */}
+          VerlangenTFT Meta
         </Link>
         <div>
           <Link to="/" className="mr-4 hover:text-gray-300">
